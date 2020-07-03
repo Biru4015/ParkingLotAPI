@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "O0Ztai+8CI0cHi65W9az8Y74pqoMpYSijRmpmZfeSRhZXnnK2KkCJuZB1JFukTfHN8G6RALmT2DU5/ktl6g5Ig==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Birendra Kumar\\source\\repos\\ParkingLot\\ParkingLotModelLayer\\ParkingLotModelLayer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.netcore.app\\2.1.0\\microsoft.netcore.app.2.1.0.nupkg.sha512",
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.1.0\\microsoft.netcore.dotnetapphost.2.1.0.nupkg.sha512",
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.netcore.dotnethostpolicy\\2.1.0\\microsoft.netcore.dotnethostpolicy.2.1.0.nupkg.sha512",
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.netcore.dotnethostresolver\\2.1.0\\microsoft.netcore.dotnethostresolver.2.1.0.nupkg.sha512",
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.0\\microsoft.netcore.platforms.2.1.0.nupkg.sha512",
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.netcore.targets\\2.1.0\\microsoft.netcore.targets.2.1.0.nupkg.sha512",
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
