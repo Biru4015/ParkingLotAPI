@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using ParkingLotRepositoryLayer.DatabaseConnection;
 
 namespace ParkingLot
 {
@@ -14,6 +15,8 @@ namespace ParkingLot
     {
         public static void Main(string[] args)
         {
+            //Connection connection = new Connection();
+            //connection.Connections();
             CreateWebHostBuilder(args).Build().Run();
         }
 

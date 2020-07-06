@@ -1,0 +1,17 @@
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\bin\Debug\netcoreapp2.1\ParkingLot.deps.json
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\bin\Debug\netcoreapp2.1\ParkingLot.runtimeconfig.json
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\bin\Debug\netcoreapp2.1\ParkingLot.runtimeconfig.dev.json
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\bin\Debug\netcoreapp2.1\ParkingLot.dll
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\bin\Debug\netcoreapp2.1\ParkingLot.pdb
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\obj\Debug\netcoreapp2.1\ParkingLot.csprojAssemblyReference.cache
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\obj\Debug\netcoreapp2.1\ParkingLot.csproj.CoreCompileInputs.cache
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\obj\Debug\netcoreapp2.1\ParkingLot.RazorAssemblyInfo.cache
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\obj\Debug\netcoreapp2.1\ParkingLot.RazorAssemblyInfo.cs
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\obj\Debug\netcoreapp2.1\ParkingLot.AssemblyInfoInputs.cache
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\obj\Debug\netcoreapp2.1\ParkingLot.AssemblyInfo.cs
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\obj\Debug\netcoreapp2.1\ParkingLot.RazorTargetAssemblyInfo.cache
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\obj\Debug\netcoreapp2.1\ParkingLot.dll
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\obj\Debug\netcoreapp2.1\ParkingLot.pdb
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLot\obj\Debug\netcoreapp2.1\ParkingLot.genruntimeconfig.cache

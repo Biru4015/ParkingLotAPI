@@ -1,0 +1,9 @@
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotManagerLayer\bin\Debug\netcoreapp2.1\ParkingLotManagerLayer.deps.json
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotManagerLayer\bin\Debug\netcoreapp2.1\ParkingLotManagerLayer.dll
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotManagerLayer\bin\Debug\netcoreapp2.1\ParkingLotManagerLayer.pdb
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotManagerLayer\obj\Debug\netcoreapp2.1\ParkingLotManagerLayer.csprojAssemblyReference.cache
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotManagerLayer\obj\Debug\netcoreapp2.1\ParkingLotManagerLayer.csproj.CoreCompileInputs.cache
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotManagerLayer\obj\Debug\netcoreapp2.1\ParkingLotManagerLayer.AssemblyInfoInputs.cache
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotManagerLayer\obj\Debug\netcoreapp2.1\ParkingLotManagerLayer.AssemblyInfo.cs
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotManagerLayer\obj\Debug\netcoreapp2.1\ParkingLotManagerLayer.dll
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotManagerLayer\obj\Debug\netcoreapp2.1\ParkingLotManagerLayer.pdb

@@ -1,16 +1,32 @@
 {
   "version": 2,
-  "dgSpecHash": "T+eiyyHSft1ru4HaFF1kX/IsNEo+M/rBPwDb/w02OyK9SBBEyMM4Dqqwb7074CQYDbWb0baFDUYNYuw2d1J5Ig==",
+  "dgSpecHash": "X4m+DSuZ7JsD3KyIffnjlKDdt7JfC8VeK4qYqdXfVlV/Gh4G6U6Fras544QRCqSPsDoFuMXJBX61fmWSUaxXJQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Birendra Kumar\\source\\repos\\ParkingLot\\ParkingLotRepositoryLayer\\ParkingLotRepositoryLayer.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.5\\microsoft.extensions.configuration.abstractions.3.1.5.nupkg.sha512",
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.5\\microsoft.extensions.primitives.3.1.5.nupkg.sha512",
     "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.netcore.app\\2.1.0\\microsoft.netcore.app.2.1.0.nupkg.sha512",
     "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.1.0\\microsoft.netcore.dotnetapphost.2.1.0.nupkg.sha512",
     "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.netcore.dotnethostpolicy\\2.1.0\\microsoft.netcore.dotnethostpolicy.2.1.0.nupkg.sha512",
     "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.netcore.dotnethostresolver\\2.1.0\\microsoft.netcore.dotnethostresolver.2.1.0.nupkg.sha512",
     "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.0\\microsoft.netcore.platforms.2.1.0.nupkg.sha512",
     "C:\\Users\\Birendra Kumar\\.nuget\\packages\\microsoft.netcore.targets\\2.1.0\\microsoft.netcore.targets.2.1.0.nupkg.sha512",
-    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\oracle.manageddataaccess\\19.7.0\\oracle.manageddataaccess.19.7.0.nupkg.sha512",
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\system.memory\\4.5.2\\system.memory.4.5.2.nupkg.sha512",
+    "C:\\Users\\Birendra Kumar\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Oracle.ManagedDataAccess 19.7.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Oracle.ManagedDataAccess",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    }
+  ]
 }

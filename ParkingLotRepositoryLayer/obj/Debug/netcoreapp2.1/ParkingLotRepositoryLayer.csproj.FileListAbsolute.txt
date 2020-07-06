@@ -1,0 +1,12 @@
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotRepositoryLayer\bin\Debug\netcoreapp2.1\ParkingLotRepositoryLayer.deps.json
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotRepositoryLayer\bin\Debug\netcoreapp2.1\ParkingLotRepositoryLayer.dll
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotRepositoryLayer\bin\Debug\netcoreapp2.1\ParkingLotRepositoryLayer.pdb
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotRepositoryLayer\bin\Debug\netcoreapp2.1\ParkingLotModelLayer.dll
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotRepositoryLayer\bin\Debug\netcoreapp2.1\ParkingLotModelLayer.pdb
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotRepositoryLayer\obj\Debug\netcoreapp2.1\ParkingLotRepositoryLayer.csprojAssemblyReference.cache
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotRepositoryLayer\obj\Debug\netcoreapp2.1\ParkingLotRepositoryLayer.csproj.CoreCompileInputs.cache
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotRepositoryLayer\obj\Debug\netcoreapp2.1\ParkingLotRepositoryLayer.AssemblyInfoInputs.cache
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotRepositoryLayer\obj\Debug\netcoreapp2.1\ParkingLotRepositoryLayer.AssemblyInfo.cs
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotRepositoryLayer\obj\Debug\netcoreapp2.1\ParkingLotRepositoryLayer.csproj.CopyComplete
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotRepositoryLayer\obj\Debug\netcoreapp2.1\ParkingLotRepositoryLayer.dll
+C:\Users\Birendra Kumar\source\repos\ParkingLot\ParkingLotRepositoryLayer\obj\Debug\netcoreapp2.1\ParkingLotRepositoryLayer.pdb
