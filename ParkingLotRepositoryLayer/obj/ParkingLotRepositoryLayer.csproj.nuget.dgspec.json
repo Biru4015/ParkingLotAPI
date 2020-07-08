@@ -97,9 +97,17 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
-            "Microsoft.Extensions.Configuration.Abstractions": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.5, )"
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.1.1, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
@@ -107,9 +115,9 @@
               "version": "[2.1.0, )",
               "autoReferenced": true
             },
-            "Oracle.ManagedDataAccess": {
+            "Oracle.ManagedDataAccess.Core": {
               "target": "Package",
-              "version": "[19.7.0, )"
+              "version": "[2.19.70, )"
             }
           },
           "imports": [

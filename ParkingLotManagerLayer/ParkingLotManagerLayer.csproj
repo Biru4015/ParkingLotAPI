@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="IParkingManager\" />
-    <Folder Include="ParkingManager\" />
+    <ProjectReference Include="..\ParkingLotModelLayer\ParkingLotModelLayer.csproj" />
+    <ProjectReference Include="..\ParkingLotRepositoryLayer\ParkingLotRepositoryLayer.csproj" />
   </ItemGroup>
 
 </Project>

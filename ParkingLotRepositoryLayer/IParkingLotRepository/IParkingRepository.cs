@@ -5,13 +5,23 @@ using System.Text;
 
 namespace ParkingLotRepositoryLayer.IParkingLotRepository
 {
+    /// <summary>
+    /// This inertface contains the code for business layer.
+    /// </summary>
     public interface IParkingRepository
     {
-        IEnumerable<Parking> GetDetail();
-        IEnumerable<Parking> GetParkingById(int parkingId);
-        IEnumerable<Parking> GetParkingByNum(String Vehiclenum);
-        IEnumerable<Parking> GetParkingByVType(int VehicleType);
-        object Parkinglot(Parking parking);
+        IEnumerable<Parking> GetParkingDetail();
+
+        IEnumerable<Parking> GetParkingDetailsById(int parkingId);
+        
+        IEnumerable<Parking> GetParkingDetailsByNum(String VehicleNumber);
+        
+        IEnumerable<Parking> GetParkingDetailsByVehicleType(int VehicleType);
+        
+        object ParkinglotDetails(Parking parking);
+        
         object UnParking(int parkingID);
+
+        object ListOfVacantSlot();
     }
 }
