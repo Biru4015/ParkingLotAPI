@@ -9,6 +9,9 @@ using Serilog;
 
 namespace ParkingLot.Controllers
 {
+    /// <summary>
+    /// This controller class contains the code of showing vacant slot of vehicles.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class SlotController : ControllerBase
@@ -18,6 +21,11 @@ namespace ParkingLot.Controllers
         {
             this.Manager = manager;
         }
+
+        /// <summary>
+        /// This method is created for getting list of vacant slots.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("ListOfVacantSlot")]
         public IActionResult ListOfVacantSlot()

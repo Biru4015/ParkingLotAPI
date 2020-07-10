@@ -9,6 +9,9 @@ using ParkingLotModelLayer;
 
 namespace ParkingLot.Controllers
 {
+    /// <summary>
+    /// This is Driver controller class.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class DriverController : ControllerBase
@@ -19,6 +22,11 @@ namespace ParkingLot.Controllers
             this.Manager = manager;
         }
 
+        /// <summary>
+        /// This method is created for Adding parking details.
+        /// </summary>
+        /// <param name="parking"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Parkinglot")]
         public IActionResult ParkinglotDetails(Parking parking)
@@ -42,6 +50,11 @@ namespace ParkingLot.Controllers
             return (IActionResult)result;
         }
 
+        /// <summary>
+        /// This method is created for unparking the vehicles by parkingId.
+        /// </summary>
+        /// <param name="parkingID"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("UnParking")]
         public IActionResult UnParking(int parkingID)

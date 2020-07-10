@@ -10,6 +10,9 @@ using Serilog;
 
 namespace ParkingLot.Controllers
 {
+    /// <summary>
+    /// This controller class is created for Police.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class PoliceController : ControllerBase
@@ -20,6 +23,11 @@ namespace ParkingLot.Controllers
             this.Manager = manager;
         }
 
+        /// <summary>
+        /// This method is created for adding parking details.
+        /// </summary>
+        /// <param name="parking"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("ParkinglotDetails")]
         public IActionResult ParkinglotDetails(Parking parking)
@@ -44,6 +52,41 @@ namespace ParkingLot.Controllers
             
         }
 
+        /// <summary>
+        /// This me
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetParkingDetailsById")]
+        public IActionResult GetParkingDetailsById(int Id)
+        {
+            string message;
+            bool success;
+            var res = this.Manager.GetParkingDetailsById(Id);
+            object result;
+            if (!res.Equals(null))
+            {
+                Log.Information("list is displayed");
+                success = true;
+                message = "Successful";
+                result = Ok(new { success, message, res });
+            }
+            else
+            {
+                success = false;
+                message = "List of details can't be possible to show ,something went wrong.";
+                return BadRequest(new { success, message });
+            }
+            return (IActionResult)result;
+
+        }
+
+        /// <summary>
+        /// This method is  created for getting parking details by vehicle number.
+        /// </summary>
+        /// <param name="Vehiclenum"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetParkingDetailsByNum")]
         public IActionResult GetParkingDetailsByNum(String Vehiclenum)
@@ -68,6 +111,11 @@ namespace ParkingLot.Controllers
             return (IActionResult)result;
         }
 
+        /// <summary>
+        /// This method is created for getting parking details by vehicles type.
+        /// </summary>
+        /// <param name="VehicleType"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetParkingDetailsByVehicleType")]
         public IActionResult GetParkingDetailsByVehicleType(int VehicleType)

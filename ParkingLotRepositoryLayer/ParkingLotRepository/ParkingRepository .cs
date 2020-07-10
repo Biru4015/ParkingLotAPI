@@ -167,10 +167,45 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
         /// </summary>
         /// <param name="parkingId"></param>
         /// <returns></returns>
-        public IEnumerable<Parking> GetParkingDetailsById(int parkingId)
+        public IEnumerable<Parking> GetParkingDetailsById(int Id)
         {
             List<Parking> list = new List<Parking>();
-            var commandText = "Queries.selectByParkingIDQuery where Id=" + parkingId + "";
+            var commandText = "Queries.selectByIdQuery where Id=" + Id + "";
+            using (var _db = new OracleConnection(configuration["UserConnectionStrings:UserDbConnection"]))
+            using (OracleCommand cmd = new OracleCommand(commandText, _db))
+            {
+                cmd.Connection = _db;
+                cmd.CommandType = CommandType.Text;
+                _db.Open();
+                OracleDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Parking parking = new Parking();
+                    parking.Id = Convert.ToInt32(reader["Id"]);
+                    parking.ParkingSLot = Convert.ToInt32(reader["ParkingSLot"]);
+                    parking.VehicleNumber = reader["VehicleNumber"].ToString();
+                    parking.EntryTime = Convert.ToDateTime(reader["EntryTime"]);
+                    parking.VehicleId = Convert.ToInt32(reader["PVehicleId"]);
+                    parking.ParkingId = Convert.ToInt32(reader["PParkingId"]);
+                    parking.RoleId = Convert.ToInt32(reader["PRoleId"]);
+                    parking.Disabled = reader["Disabled"].ToString();
+                    parking.ExitTime = Convert.ToDateTime(reader["ExitTime"]);
+                    list.Add(parking);
+                }
+                _db.Close();
+                return list;
+            }
+        }
+
+        /// <summary>
+        /// This method is created for getting parking details by parkingId
+        /// </summary>
+        /// <param name="parkingId"></param>
+        /// <returns></returns>
+        public IEnumerable<Parking> GetParkingDetailsByParkingId(int parkingId)
+        {
+            List<Parking> list = new List<Parking>();
+            var commandText = "Queries.selectByParkingsIDQuery where Id=" + parkingId + "";
             using (var _db = new OracleConnection(configuration["UserConnectionStrings:UserDbConnection"]))
             using (OracleCommand cmd = new OracleCommand(commandText, _db))
             {
@@ -220,9 +255,9 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                     parking.ParkingSLot = Convert.ToInt32(reader["ParkingSLot"]);
                     parking.VehicleNumber = reader["VehicleNumber"].ToString();
                     parking.EntryTime = Convert.ToDateTime(reader["EntryTime"]);
-                    parking.VehicleId = Convert.ToInt32(reader["PVehicleId"]);
-                    parking.ParkingId = Convert.ToInt32(reader["PParkingId"]);
-                    parking.RoleId = Convert.ToInt32(reader["PRoleId"]);
+                    parking.VehicleId = Convert.ToInt32(reader["VehicleId"]);
+                    parking.ParkingId = Convert.ToInt32(reader["ParkingId"]);
+                    parking.RoleId = Convert.ToInt32(reader["RoleId"]);
                     parking.Disabled = reader["Disabled"].ToString();
                     parking.ExitTime = Convert.ToDateTime(reader["ExitTime"]);
                     list.Add(parking);

@@ -10,6 +10,9 @@ using Serilog;
 
 namespace ParkingLot.Controllers
 {
+    /// <summary>
+    /// This controller class is created for Security.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class SecurityController : ControllerBase
@@ -20,6 +23,11 @@ namespace ParkingLot.Controllers
             this.Manager = manager;
         }
 
+        /// <summary>
+        /// This method is created for adding parking details.
+        /// </summary>
+        /// <param name="parking"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult ParkinglotDetails(Parking parking)
         {
@@ -40,6 +48,11 @@ namespace ParkingLot.Controllers
             return (IActionResult)result;
         }
 
+        /// <summary>
+        /// This method is created for getting parking details by vehicles number.
+        /// </summary>
+        /// <param name="Vehiclenum"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetParkingDetailsByNum")]
         public IActionResult GetParkingDetailsByNum(String Vehiclenum)
@@ -62,6 +75,11 @@ namespace ParkingLot.Controllers
             return (IActionResult)result;
         }
 
+        /// <summary>
+        /// This method is created for getting vehicle details by vehicle type.
+        /// </summary>
+        /// <param name="VehicleType"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetParkingDetailsByVehicleType")]
         public IActionResult GetParkingDetailsByVehicleType(int VehicleType)

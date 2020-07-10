@@ -31,9 +31,14 @@ namespace ParkingLotManagerLayer.ParkingLotManager
             return this.Parking.GetParkingDetail();
         }
 
-        public object GetParkingDetailsById(int parkingId)
+        public object GetParkingDetailsById(int Id)
         {
-            return this.Parking.GetParkingDetailsById(parkingId);
+            return this.Parking.GetParkingDetailsById(Id);
+        }
+
+        public object GetParkingDetailsByParkingId(int parkingId)
+        {
+            return this.Parking.GetParkingDetailsByParkingId(parkingId);
         }
 
         public object GetParkingDetailsByNum(String Vehiclenum)

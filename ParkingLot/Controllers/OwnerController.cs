@@ -10,6 +10,9 @@ using Serilog;
 
 namespace ParkingLot.Controllers
 {
+    /// <summary>
+    /// This is Owner Controller class
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class OwnerController : ControllerBase
@@ -20,6 +23,11 @@ namespace ParkingLot.Controllers
             this.Manager = manager;
         }
 
+        /// <summary>
+        /// This method is created for adding parking details.
+        /// </summary>
+        /// <param name="parking"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Parkinglot")]
         public IActionResult ParkinglotDetails(Parking parking)
@@ -43,6 +51,10 @@ namespace ParkingLot.Controllers
             return (IActionResult)result;
         }
 
+        /// <summary>
+        /// This method is created for getting parking details
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetDetail")]
         public IActionResult GetParkingDetail()
@@ -67,13 +79,18 @@ namespace ParkingLot.Controllers
             return (IActionResult)result;
         }
 
+        /// <summary>
+        /// This method is created for getting parking parking details by parkingId.
+        /// </summary>
+        /// <param name="parkingId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetParkingDetailsById")]
-        public IActionResult GetParkingDetailsById(int parkingId)
+        public IActionResult GetParkingDetailsByParkingId(int parkingId)
         {
             string message;
             bool success;
-            var res = this.Manager.GetParkingDetailsById(parkingId);
+            var res = this.Manager.GetParkingDetailsByParkingId(parkingId);
             object result;
             if (!res.Equals(null))
             {
@@ -91,7 +108,11 @@ namespace ParkingLot.Controllers
             return (IActionResult)result;
         }
 
-
+        /// <summary>
+        /// This method is created is Unparking the vehicles by parkingId.
+        /// </summary>
+        /// <param name="parkingID"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("UnParking")]
         public IActionResult UnParking(int parkingID)
