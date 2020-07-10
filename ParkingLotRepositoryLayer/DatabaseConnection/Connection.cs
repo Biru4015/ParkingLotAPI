@@ -33,8 +33,8 @@ namespace ParkingLotRepositoryLayer.DatabaseConnection
                 " execute immediate 'create table PARKINGLOTAPIS.VehicleType(VehicleId int NOT NULL PRIMARY KEY,VehicleTypes varchar2(20) not null ,Charges FLOAT(8))';" +
                 " execute immediate 'create table PARKINGLOTAPIS.ParkingType(ParkingId int NOT NULL PRIMARY KEY ,ParkingTypes varchar2(20) not null ,Charges FLOAT(8))';" +
                 " execute immediate 'create table PARKINGLOTAPIS.Roles(RolesId int NOT NULL PRIMARY KEY ,Role varchar2(20) not null ,Charges FLOAT(8))';" +
-                " execute immediate 'create table PARKINGLOTAPIS.Parking(Id int NOT NULL PRIMARY KEY ,ParkingSLot varchar2(20) NOT NULL,VehicleNumber varchar2(20) NOT NULL," +
-                " EntryTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP, VehicleId int ,ParkingId int ,RoleId ,FOREIGN KEY(VehicleId) REFERENCES VehicleType(VehicleId), FOREIGN KEY(ParkingId) REFERENCES ParkingType(ParkingId) ,FOREIGN KEY(RoleId ) REFERENCES Roles(RolesId))';" +
+                " execute immediate 'create table PARKINGLOTAPIS.Parking(Id int NOT NULL PRIMARY KEY ,ParkingSLot varchar2(20) NOT NULL,Color varchar2(20) NOT NULL,VehicleNumber varchar2(20) NOT NULL," +
+                " EntryTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP, VehicleId int ,ParkingId int ,RoleId int ,ExitTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(VehicleId) REFERENCES VehicleType(VehicleId), FOREIGN KEY(ParkingId) REFERENCES ParkingType(ParkingId) ,FOREIGN KEY(RoleId ) REFERENCES Roles(RolesId)),';" +
                 " execute immediate 'insert into PARKINGLOTAPIS.VehicleType(VehicleId,VehicleTypes,Charges) values(001 ,'CAR' ,80.0)';" +
                 " execute immediate 'insert into PARKINGLOTAPIS.VehicleType(VehicleId,VehicleTypes,Charges) values(002 ,'Bike' ,300.0)';" +
                 " execute immediate 'insert into PARKINGLOTAPIS.ParkingType(ParkingId,ParkingTypes,Charges) values(001 ,'Vallet' ,80.0)';" +

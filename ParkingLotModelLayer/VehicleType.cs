@@ -13,6 +13,7 @@ namespace ParkingLotModelLayer
         /// <summary>
         /// This is vehicle id
         /// </summary>
+        [Key]
         [Required]
         public int VehicleId { get; set; }
         

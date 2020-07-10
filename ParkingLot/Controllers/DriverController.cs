@@ -16,6 +16,8 @@ namespace ParkingLot.Controllers
     [ApiController]
     public class DriverController : ControllerBase
     {
+        MSMQ msmq = new MSMQ();
+
         public IParkingManager Manager;
         public DriverController(IParkingManager manager)
         {
@@ -32,22 +34,18 @@ namespace ParkingLot.Controllers
         public IActionResult ParkinglotDetails(Parking parking)
         {
             string message;
-            bool success;
             var res = this.Manager.ParkinglotDetails(parking);
-            object result;
             if (!res.Equals(null))
             {
-                success = true;
                 message = "Successful";
-                result = Ok(new { success, message, res });
+                msmq.SendMessage("UnParking vehicle charges:", res);
+                return this.Ok(new { message, res });
             }
             else
             {
-                success = false;
                 message = "Can't add vehcile details something went wrong.";
-                return BadRequest(new { success, message });
+                return BadRequest(new {  message });
             }
-            return (IActionResult)result;
         }
 
         /// <summary>
@@ -60,22 +58,17 @@ namespace ParkingLot.Controllers
         public IActionResult UnParking(int parkingID)
         {
             string message;
-            bool success;
             var res = this.Manager.UnParking(parkingID);
-            object result;
             if (!res.Equals(null))
             {
-                success = true;
                 message = "Successful";
-                result = Ok(new { success, message, res });
+                return this.Ok(new { message, res });
             }
             else
             {
-                success = false;
                 message = "Vehciles can't be parked getting some errors.";
-                return BadRequest(new { success, message });
+                return BadRequest(new {  message });
             }
-            return (IActionResult)result;
         }
     }
 }

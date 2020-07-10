@@ -17,6 +17,8 @@ namespace ParkingLot.Controllers
     [ApiController]
     public class PoliceController : ControllerBase
     {
+        MSMQ msmq = new MSMQ();
+
         public IParkingManager Manager;
         public PoliceController(IParkingManager manager)
         {
@@ -33,22 +35,18 @@ namespace ParkingLot.Controllers
         public IActionResult ParkinglotDetails(Parking parking)
         {
             string message;
-            bool success;
             var res = this.Manager.ParkinglotDetails(parking);
-            object result;
             if (!res.Equals(null))
             {
-                success = true;
                 message = "Successful";
-                result = Ok(new { success, message, res });
+                msmq.SendMessage("UnParking vehicle charges:", res);
+                return this.Ok(new {  message, res });
             }
             else
             {
-                success = false;
                 message = "Details adding can't be possible";
-                return BadRequest(new { success, message });
+                return BadRequest(new { message });
             }
-            return (IActionResult)result;
             
         }
 
@@ -58,28 +56,22 @@ namespace ParkingLot.Controllers
         /// <param name="Id"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetParkingDetailsById")]
-        public IActionResult GetParkingDetailsById(int Id)
+        [Route("GetParkingDetailsByColor")]
+        public IActionResult GetParkingDetailsByColor(String color)
         {
             string message;
-            bool success;
-            var res = this.Manager.GetParkingDetailsById(Id);
-            object result;
+            var res = this.Manager.GetParkingDetailsByColor(color);
             if (!res.Equals(null))
             {
                 Log.Information("list is displayed");
-                success = true;
                 message = "Successful";
-                result = Ok(new { success, message, res });
+                return this.Ok(new { message, res });
             }
             else
             {
-                success = false;
                 message = "List of details can't be possible to show ,something went wrong.";
-                return BadRequest(new { success, message });
+                return BadRequest(new { message });
             }
-            return (IActionResult)result;
-
         }
 
         /// <summary>
@@ -92,23 +84,18 @@ namespace ParkingLot.Controllers
         public IActionResult GetParkingDetailsByNum(String Vehiclenum)
         {
             string message;
-            bool success;
             var res = this.Manager.GetParkingDetailsByNum(Vehiclenum);
-            object result;
             if (!res.Equals(null))
             {
                 Log.Information("list is displayed");
-                success = true;
                 message = "Successful";
-                result = Ok(new { success, message, res });
+                return this.Ok(new {  message, res });
             }
             else
-            {
-                success = false;
+            { 
                 message = "List of details can't be possible to show ,something went wrong.";
-                return BadRequest(new { success, message });
+                return BadRequest(new { message });
             }
-            return (IActionResult)result;
         }
 
         /// <summary>
@@ -121,23 +108,18 @@ namespace ParkingLot.Controllers
         public IActionResult GetParkingDetailsByVehicleType(int VehicleType)
         {
             string message;
-            bool success;
             var res = this.Manager.GetParkingDetailsByVehicleType(VehicleType);
-            object result;
             if (!res.Equals(null))
             {
                 Log.Information("list is displayed");
-                success = true;
                 message = "Successful";
-                result = Ok(new { success, message, res });
+                return this.Ok(new { message, res });
             }
             else
             {
-                success = false;
                 message = "List of details can't be possible to show ,something went wrong.";
-                return BadRequest(new { success, message });
+                return BadRequest(new { message });
             }
-            return (IActionResult)result;
         }
     }
 }

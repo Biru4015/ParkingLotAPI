@@ -17,6 +17,7 @@ namespace ParkingLot.Controllers
     [ApiController]
     public class SecurityController : ControllerBase
     {
+        MSMQ msmq = new MSMQ();
         public IParkingManager Manager;
         public SecurityController(IParkingManager manager)
         {
@@ -32,14 +33,13 @@ namespace ParkingLot.Controllers
         public IActionResult ParkinglotDetails(Parking parking)
         {
             string message;
-            bool success;
             var res = this.Manager.ParkinglotDetails(parking);
             object result;
             if (!res.Equals(null))
             {
-                success = true;
                 message = "Successful";
-                result = Ok(new { success, message, res });
+                msmq.SendMessage("UnParking vehicle charges:", res);
+                result = Ok(new { message, res });
             }            
             else
             {
@@ -58,21 +58,18 @@ namespace ParkingLot.Controllers
         public IActionResult GetParkingDetailsByNum(String Vehiclenum)
         {
             string message;
-            bool success;
             var res = this.Manager.GetParkingDetailsByNum(Vehiclenum);
-            object result;
             if (!res.Equals(null))
             {
                 Log.Information("list is displayed");
-                success = true;
                 message = "Successful";
-                result = Ok(new { success, message, res });
+                return this.Ok(new { message, res });
             }
             else
             {
-                return this.BadRequest(new { error = "Details can't be show,something went wrong." });
+                message = "Details can't be show,something went wrong.";
+                return BadRequest(new { message });
             }
-            return (IActionResult)result;
         }
 
         /// <summary>
@@ -85,21 +82,19 @@ namespace ParkingLot.Controllers
         public IActionResult GetParkingDetailsByVehicleType(int VehicleType)
         {
             var res = this.Manager.GetParkingDetailsByVehicleType(VehicleType);
-            object result;
+            string message;
             if (!res.Equals(null))
             {
-                string message;
-                bool success;
+
                 Log.Information("list is displayed");
-                success = true;
                 message = "Successful";
-                result = Ok(new { success, message, res });
+                return this.Ok(new { message, res });
             }
             else
             {
-                return this.BadRequest(new { error = "Details can't be show,something went wrong" });
+                message = "Details can't be show,something went wrong.";
+                return BadRequest(new { message });
             }
-            return (IActionResult)result;
         }
     }
 }

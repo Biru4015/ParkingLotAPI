@@ -23,6 +23,9 @@ namespace ParkingLotModelLayer
         [Required]
         public int ParkingSLot { get; set; }
 
+        [Required]
+        public string Color { get; set; }
+
         /// <summary>
         /// This is vehicle number
         /// </summary>

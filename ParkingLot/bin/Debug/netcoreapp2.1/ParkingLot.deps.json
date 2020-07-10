@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v2.1": {
       "ParkingLot/1.0.0": {
         "dependencies": {
+          "Experimental.System.Messaging": "1.1.0",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Razor.Design": "2.1.2",
           "Microsoft.NETCore.App": "2.1.0",
@@ -40,6 +41,17 @@
         },
         "compile": {
           "ParkingLot.dll": {}
+        }
+      },
+      "Experimental.System.Messaging/1.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/Experimental.System.Messaging.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Experimental.System.Messaging.dll": {}
         }
       },
       "Microsoft.AspNetCore.Razor.Design/2.1.2": {},
@@ -3583,6 +3595,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Experimental.System.Messaging/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vub7Mtt2WFdFKTZKECVuZx6feP5kUpS9EfVy+Yu4GDfdlMwivRdX4TbdkDYS2lKqCjqzUbnxTbJei1IOqC+CnA==",
+      "path": "experimental.system.messaging/1.1.0",
+      "hashPath": "experimental.system.messaging.1.1.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Design/2.1.2": {
       "type": "package",

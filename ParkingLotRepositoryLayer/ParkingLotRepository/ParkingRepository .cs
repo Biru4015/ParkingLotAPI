@@ -21,7 +21,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
             this.configuration = configuration;
         }
         readonly List<Int32> slotList = new List<Int32>();
-         
+
         /// <summary>
         /// This method is created for Adding Parking details in database
         /// </summary>
@@ -29,7 +29,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
         /// <returns></returns>
         public object ParkinglotDetails(Parking parking)
         {
-            
+
             var commandText = Queries.insertParkingDetailsQuery;
             using (var _db = new OracleConnection(configuration["UserConnectionStrings:UserDbConnection"]))
             using (OracleCommand cmd = new OracleCommand(commandText, _db))
@@ -37,6 +37,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                 cmd.Connection = _db;
                 cmd.Parameters.Add("Id", parking.Id);
                 cmd.Parameters.Add("ParkingSLot", parking.ParkingSLot);
+                cmd.Parameters.Add("Color", parking.Color);
                 cmd.Parameters.Add("VehicleNumber", parking.VehicleNumber);
                 cmd.Parameters.Add("EntryTime", parking.EntryTime);
                 cmd.Parameters.Add("VehicleId", parking.VehicleId);
@@ -52,7 +53,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                 return "Added successfully in database";
             }
         }
-
+            
         /// <summary>
         /// This method is created for Adding unparking details in database
         /// </summary>
@@ -60,7 +61,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
         /// <returns></returns>
         public object UnParking(int parkingID)
         {
-            var commandText = "Queries.updateByIDQuery WHERE ID=" + parkingID + "";
+            var commandText = Queries.updateByIDQuery + parkingID + "";
             using (var _db = new OracleConnection(configuration["UserConnectionStrings:UserDbConnection"]))
             using (OracleCommand cmd = new OracleCommand(commandText, _db))
             {
@@ -75,7 +76,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
 
             List<Parking> list = new List<Parking>();
             Parking parking = new Parking();
-            var commandTexts = "Queries.selectByIdQuery where Id=" + parkingID + "";
+            var commandTexts = Queries.selectByParkingIDQuery + parkingID + "";
             using (var _db = new OracleConnection(configuration["UserConnectionStrings:UserDbConnection"]))
             using (OracleCommand cmd = new OracleCommand(commandTexts, _db))
             {
@@ -87,6 +88,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                 {
                     parking.Id = Convert.ToInt32(reader["Id"]);
                     parking.ParkingSLot = Convert.ToInt32(reader["ParkingSLot"]);
+                    parking.Color = reader["Color"].ToString();
                     parking.VehicleNumber = reader["VehicleNumber"].ToString();
                     parking.EntryTime = Convert.ToDateTime(reader["EntryTime"]);
                     parking.VehicleId = Convert.ToInt32(reader["VehicleId"]);
@@ -104,7 +106,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
             System.TimeSpan diff = parking.ExitTime.Subtract(parking.EntryTime);
             var differenceInTime = diff.TotalHours;
             List<Roles> list1 = new List<Roles>();
-            var Charges = "Queries.selectByRoleIDQuery where RolesId =" + parking.RoleId + "";
+            var Charges = Queries.selectByRoleIDQuery + parking.RoleId + "";
             using (var _db = new OracleConnection(configuration["UserConnectionStrings:UserDbConnection"]))
             using (OracleCommand cmd = new OracleCommand(Charges, _db))
             {
@@ -122,9 +124,9 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                 _db.Close();
                 if (differenceInTime <= 1)
                 {
-                    return Charges;
+                    return roles.Charges;
                 }
-                return Math.Round(Convert.ToDouble(Charges) * differenceInTime);
+                return Math.Round(Convert.ToDouble(roles.Charges) * differenceInTime);
             }
         }
 
@@ -148,6 +150,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                     Parking parking = new Parking();
                     parking.Id = Convert.ToInt32(reader["Id"]);
                     parking.ParkingSLot = Convert.ToInt32(reader["ParkingSLot"]);
+                    parking.Color = reader["Color"].ToString();
                     parking.VehicleNumber = reader["VehicleNumber"].ToString();
                     parking.EntryTime = Convert.ToDateTime(reader["EntryTime"]);
                     parking.VehicleId = Convert.ToInt32(reader["VehicleId"]);
@@ -167,10 +170,10 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
         /// </summary>
         /// <param name="parkingId"></param>
         /// <returns></returns>
-        public IEnumerable<Parking> GetParkingDetailsById(int Id)
+        public IEnumerable<Parking> GetParkingDetailsByColor(String color)
         {
             List<Parking> list = new List<Parking>();
-            var commandText = "Queries.selectByIdQuery where Id=" + Id + "";
+            var commandText = Queries.selectByColorQuery  + color + "";
             using (var _db = new OracleConnection(configuration["UserConnectionStrings:UserDbConnection"]))
             using (OracleCommand cmd = new OracleCommand(commandText, _db))
             {
@@ -183,6 +186,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                     Parking parking = new Parking();
                     parking.Id = Convert.ToInt32(reader["Id"]);
                     parking.ParkingSLot = Convert.ToInt32(reader["ParkingSLot"]);
+                    parking.Color = reader["Color"].ToString();
                     parking.VehicleNumber = reader["VehicleNumber"].ToString();
                     parking.EntryTime = Convert.ToDateTime(reader["EntryTime"]);
                     parking.VehicleId = Convert.ToInt32(reader["PVehicleId"]);
@@ -205,7 +209,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
         public IEnumerable<Parking> GetParkingDetailsByParkingId(int parkingId)
         {
             List<Parking> list = new List<Parking>();
-            var commandText = "Queries.selectByParkingsIDQuery where Id=" + parkingId + "";
+            var commandText = Queries.selectByParkingIDQuery + parkingId +"";
             using (var _db = new OracleConnection(configuration["UserConnectionStrings:UserDbConnection"]))
             using (OracleCommand cmd = new OracleCommand(commandText, _db))
             {
@@ -218,11 +222,12 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                     Parking parking = new Parking();
                     parking.Id = Convert.ToInt32(reader["Id"]);
                     parking.ParkingSLot = Convert.ToInt32(reader["ParkingSLot"]);
+                    parking.Color = reader["Color"].ToString();
                     parking.VehicleNumber = reader["VehicleNumber"].ToString();
                     parking.EntryTime = Convert.ToDateTime(reader["EntryTime"]);
-                    parking.VehicleId = Convert.ToInt32(reader["PVehicleId"]);
-                    parking.ParkingId = Convert.ToInt32(reader["PParkingId"]);
-                    parking.RoleId = Convert.ToInt32(reader["PRoleId"]);
+                    parking.VehicleId = Convert.ToInt32(reader["VehicleId"]);
+                    parking.ParkingId = Convert.ToInt32(reader["ParkingId"]);
+                    parking.RoleId = Convert.ToInt32(reader["RoleId"]);
                     parking.Disabled = reader["Disabled"].ToString();
                     parking.ExitTime = Convert.ToDateTime(reader["ExitTime"]);
                     list.Add(parking);
@@ -240,7 +245,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
         public IEnumerable<Parking> GetParkingDetailsByNum(String Vehiclenum)
         {
             List<Parking> list = new List<Parking>();
-            var commandText = "Queries.selectByVehcileNumberQuery where VehicleNumber=" + Vehiclenum + "";
+            var commandText =Queries.selectByVehcileNumberQuery  + Vehiclenum + "";
             using (var _db = new OracleConnection(configuration["UserConnectionStrings:UserDbConnection"]))
             using (OracleCommand cmd = new OracleCommand(commandText, _db))
             {
@@ -253,6 +258,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                     Parking parking = new Parking();
                     parking.Id = Convert.ToInt32(reader["Id"]);
                     parking.ParkingSLot = Convert.ToInt32(reader["ParkingSLot"]);
+                    parking.Color = reader["Color"].ToString();
                     parking.VehicleNumber = reader["VehicleNumber"].ToString();
                     parking.EntryTime = Convert.ToDateTime(reader["EntryTime"]);
                     parking.VehicleId = Convert.ToInt32(reader["VehicleId"]);
@@ -275,7 +281,7 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
         public IEnumerable<Parking> GetParkingDetailsByVehicleType(int VehicleType)
         {
             List<Parking> list = new List<Parking>();
-            var commandText = "Queries.selectByVehcileTypeQuery where PVehicleId=" + VehicleType + ""; 
+            var commandText = Queries.selectByVehcileTypeQuery  + VehicleType + ""; 
             using (var _db = new OracleConnection(configuration["UserConnectionStrings:UserDbConnection"]))
             using (OracleCommand cmd = new OracleCommand(commandText, _db))
             {
@@ -288,11 +294,12 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                     Parking parking = new Parking();
                     parking.Id = Convert.ToInt32(reader["Id"]);
                     parking.ParkingSLot = Convert.ToInt32(reader["ParkingSLot"]);
+                    parking.Color = reader["Color"].ToString();
                     parking.VehicleNumber = reader["VehicleNumber"].ToString();
                     parking.EntryTime = Convert.ToDateTime(reader["EntryTime"]);
-                    parking.VehicleId = Convert.ToInt32(reader["PVehicleId"]);
-                    parking.ParkingId = Convert.ToInt32(reader["PParkingId"]);
-                    parking.RoleId = Convert.ToInt32(reader["PRoleId"]);
+                    parking.VehicleId = Convert.ToInt32(reader["VehicleId"]);
+                    parking.ParkingId = Convert.ToInt32(reader["ParkingId"]);
+                    parking.RoleId = Convert.ToInt32(reader["RoleId"]);
                     parking.Disabled = reader["Disabled"].ToString();
                     parking.ExitTime = Convert.ToDateTime(reader["ExitTime"]);
                     list.Add(parking);
@@ -314,6 +321,18 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                 slotList.Add(slot);
             }
             return slotList;
+        }
+
+        /// <summary>
+        /// This method is created for showing slot is empty or not
+        /// </summary>
+        /// <returns></returns>
+        public object SlotIsEmptyOrNot()
+        {
+            if (slotList.Capacity > 0)
+                return "Slot is not empty";
+            else
+                return "Slot is empty";
         }
     }
 }

@@ -17,6 +17,8 @@ namespace ParkingLot
         {
             //Connection connection = new Connection();
             //connection.Connections();
+            MSMQ message = new MSMQ();
+            string value = message.ReceiveMessage();
             CreateWebHostBuilder(args).Build().Run();
         }
 

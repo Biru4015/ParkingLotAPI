@@ -32,22 +32,36 @@ namespace ParkingLot.Controllers
         {
             var res = this.Manager.ListOfVacantSlot();
             string message;
-            bool success;
-            object result;
             if (!res.Equals(null))
             {
                 Log.Information("Vacant slot is displayed");
-                success = true;
                 message = "Successful";
-                result= Ok(new { success, message, res });
+                return this.Ok(new { message, res });
             }
             else
             {
-                success = false;
                 message = "Vacant slot can't by by displayed";
-                return BadRequest(new { success, message });
+                return BadRequest(new { message });
             }
-            return (IActionResult)result;
+        }
+
+        [HttpGet]
+        [Route("SlotIsEmptyOrNot")]
+        public IActionResult SlotIsEmptyOrNot()
+        {
+            var res = this.Manager.SlotIsEmptyOrNot();
+            string message;
+            if (!res.Equals(null))
+            {
+                Log.Information("Vacant slot is displayed");
+                message = "Successful";
+                return this.Ok(new { message, res });
+            }
+            else
+            {
+                message = "Something went error.";
+                return BadRequest(new { message });
+            }
         }
     }
 }

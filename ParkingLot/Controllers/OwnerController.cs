@@ -22,6 +22,7 @@ namespace ParkingLot.Controllers
         {
             this.Manager = manager;
         }
+        MSMQ msmq = new MSMQ();
 
         /// <summary>
         /// This method is created for adding parking details.
@@ -32,23 +33,18 @@ namespace ParkingLot.Controllers
         [Route("Parkinglot")]
         public IActionResult ParkinglotDetails(Parking parking)
         {
-            bool success;
             string message;
-            object result;
             var res = this.Manager.ParkinglotDetails(parking);
             if (!res.Equals(null))
-            {
-                success = true;
+            { 
                 message = "Successful";
-                result = Ok(new { success, message, res });
+                return this.Ok(new { message, res });
             }
             else
             {
-                success = false;
                 message = "Details adding can't be possible";
-                return BadRequest(new { success, message });
+                return BadRequest(new {  message });
             }
-            return (IActionResult)result;
         }
 
         /// <summary>
@@ -61,22 +57,17 @@ namespace ParkingLot.Controllers
         {
             var res = this.Manager.GetParkingDetail();
             string message;
-            bool success;
-            object result;
             if (!res.Equals(null))
             {
                 Log.Information("list is displayed");
-                success = true;
                 message = "Successful";
-                result = Ok(new { success, message, res });
+                return this.Ok(new { message, res });
             }
             else
             {
-                success = false;
                 message = "List displaying can't be possible";
-                return BadRequest(new { success, message });
+                return BadRequest(new { message });
             }
-            return (IActionResult)result;
         }
 
         /// <summary>
@@ -91,13 +82,13 @@ namespace ParkingLot.Controllers
             string message;
             bool success;
             var res = this.Manager.GetParkingDetailsByParkingId(parkingId);
-            object result;
+           // object result;
             if (!res.Equals(null))
             {
                 Log.Information("list is displayed");
                 success = true;
                 message = "Successful";
-                result = Ok(new { success, message, res });
+                return this.Ok(new { success, message, res });
             }
             else
             {
@@ -105,7 +96,7 @@ namespace ParkingLot.Controllers
                 message = "Errors occured in getting deatils.";
                 return BadRequest(new { success, message });
             }
-            return (IActionResult)result;
+           // return (IActionResult)result;
         }
 
         /// <summary>
@@ -125,6 +116,7 @@ namespace ParkingLot.Controllers
             {
                 success = true;
                 message = "Successful";
+                msmq.SendMessage("UnParking vehicle charges:", res);
                 result = Ok(new { success, message, res });
             }
             else

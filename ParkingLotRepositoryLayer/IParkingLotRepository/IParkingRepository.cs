@@ -13,7 +13,7 @@ namespace ParkingLotRepositoryLayer.IParkingLotRepository
         
         IEnumerable<Parking> GetParkingDetail();
 
-        IEnumerable<Parking> GetParkingDetailsById(int Id);
+        IEnumerable<Parking> GetParkingDetailsByColor(String color);
 
         IEnumerable<Parking> GetParkingDetailsByParkingId(int parkingId);
         
@@ -26,5 +26,7 @@ namespace ParkingLotRepositoryLayer.IParkingLotRepository
         object UnParking(int parkingID);
 
         object ListOfVacantSlot();
+
+        object SlotIsEmptyOrNot();
     }
 }

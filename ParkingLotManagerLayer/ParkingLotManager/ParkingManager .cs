@@ -31,9 +31,9 @@ namespace ParkingLotManagerLayer.ParkingLotManager
             return this.Parking.GetParkingDetail();
         }
 
-        public object GetParkingDetailsById(int Id)
+        public object GetParkingDetailsByColor(String color)
         {
-            return this.Parking.GetParkingDetailsById(Id);
+            return this.Parking.GetParkingDetailsByColor(color);
         }
 
         public object GetParkingDetailsByParkingId(int parkingId)
@@ -64,6 +64,11 @@ namespace ParkingLotManagerLayer.ParkingLotManager
         public object ListOfVacantSlot()
         {
             return this.Parking.ListOfVacantSlot();
+        }
+
+        public object SlotIsEmptyOrNot()
+        {
+            return this.Parking.SlotIsEmptyOrNot();
         }
     }
 }

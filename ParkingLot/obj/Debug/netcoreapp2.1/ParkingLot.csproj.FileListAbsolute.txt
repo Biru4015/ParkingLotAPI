@@ -1,3 +1,4 @@
+C:\Users\Birendra Kumar\source\repos\ParkingLotAPI\ParkingLot\ParkingLot\bin\Debug\netcoreapp2.1\appsettings.json
 C:\Users\Birendra Kumar\source\repos\ParkingLotAPI\ParkingLot\ParkingLot\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
 C:\Users\Birendra Kumar\source\repos\ParkingLotAPI\ParkingLot\ParkingLot\bin\Debug\netcoreapp2.1\ParkingLot.deps.json
 C:\Users\Birendra Kumar\source\repos\ParkingLotAPI\ParkingLot\ParkingLot\bin\Debug\netcoreapp2.1\ParkingLot.runtimeconfig.json
