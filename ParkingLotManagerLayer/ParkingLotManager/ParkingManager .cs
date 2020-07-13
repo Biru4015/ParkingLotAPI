@@ -31,7 +31,7 @@ namespace ParkingLotManagerLayer.ParkingLotManager
             return this.Parking.GetParkingDetail();
         }
 
-        public object GetParkingDetailsByColor(String color)
+        public object GetParkingDetailsByColor(string color)
         {
             return this.Parking.GetParkingDetailsByColor(color);
         }
@@ -41,7 +41,7 @@ namespace ParkingLotManagerLayer.ParkingLotManager
             return this.Parking.GetParkingDetailsByParkingId(parkingId);
         }
 
-        public object GetParkingDetailsByNum(String Vehiclenum)
+        public object GetParkingDetailsByNum(string Vehiclenum)
         {
             return this.Parking.GetParkingDetailsByNum(Vehiclenum);
         }

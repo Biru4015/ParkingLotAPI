@@ -34,18 +34,21 @@ namespace ParkingLot.Controllers
         {
             string message;
             var res = this.Manager.ParkinglotDetails(parking);
-            object result;
-            if (!res.Equals(null))
+            try
             {
-                message = "Successful";
-                msmq.SendMessage("UnParking vehicle charges:", res);
-                result = Ok(new { message, res });
-            }            
-            else
-            {
-                return this.BadRequest(new { error = "Details adding can't be possible" });
+                if (!res.Equals(null))
+                {
+                    message = "Parking details is added.";
+                    msmq.SendMessage("Vehcile number " + parking.VehicleNumber + " Parking is done.", res);
+                    return this.Ok(new { message, res });
+                }
+                message = "Details adding can't be possible";
+                return this.BadRequest(new { message});
             }
-            return (IActionResult)result;
+            catch(CustomException)
+            {
+                return BadRequest(CustomException.ExceptionType.INVALID_INPUT);
+            }
         }
 
         /// <summary>
@@ -55,20 +58,24 @@ namespace ParkingLot.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetParkingDetailsByNum")]
-        public IActionResult GetParkingDetailsByNum(String Vehiclenum)
+        public IActionResult GetParkingDetailsByNum(string Vehiclenum)
         {
             string message;
             var res = this.Manager.GetParkingDetailsByNum(Vehiclenum);
-            if (!res.Equals(null))
+            try
             {
-                Log.Information("list is displayed");
-                message = "Successful";
-                return this.Ok(new { message, res });
-            }
-            else
-            {
+                if (!res.Equals(null))
+                {
+                    Log.Information("list is displayed");
+                    message = "Successful";
+                    return this.Ok(new { message, res });
+                }
                 message = "Details can't be show,something went wrong.";
                 return BadRequest(new { message });
+            }
+            catch(CustomException)
+            {
+                return BadRequest(CustomException.ExceptionType.INVALID_INPUT);
             }
         }
 
@@ -83,17 +90,21 @@ namespace ParkingLot.Controllers
         {
             var res = this.Manager.GetParkingDetailsByVehicleType(VehicleType);
             string message;
-            if (!res.Equals(null))
+            try
             {
+                if (!res.Equals(null))
+                {
 
-                Log.Information("list is displayed");
-                message = "Successful";
-                return this.Ok(new { message, res });
-            }
-            else
-            {
+                    Log.Information("list is displayed");
+                    message = "Successful";
+                    return this.Ok(new { message, res });
+                }        
                 message = "Details can't be show,something went wrong.";
                 return BadRequest(new { message });
+            }
+            catch(CustomException)
+            {
+                return BadRequest(CustomException.ExceptionType.INVALID_INPUT);
             }
         }
     }

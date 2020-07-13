@@ -23,6 +23,9 @@ namespace ParkingLotModelLayer
         [Required]
         public int ParkingSLot { get; set; }
 
+        /// <summary>
+        /// This is vehicle color
+        /// </summary>
         [Required]
         public string Color { get; set; }
 
@@ -42,7 +45,6 @@ namespace ParkingLotModelLayer
         /// Vehicle id
         /// </summary>
         [Required]
-        [ForeignKey("VehicleId")]
         public int VehicleId { get; set; }
 
         /// <summary>

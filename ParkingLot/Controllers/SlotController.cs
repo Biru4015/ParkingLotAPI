@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ParkingLotManagerLayer.IParkingLotManager;
+using ParkingLotModelLayer;
 using Serilog;
 
 namespace ParkingLot.Controllers
@@ -27,21 +28,24 @@ namespace ParkingLot.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("ListOfVacantSlot")]
         public IActionResult ListOfVacantSlot()
         {
             var res = this.Manager.ListOfVacantSlot();
             string message;
-            if (!res.Equals(null))
+            try
             {
-                Log.Information("Vacant slot is displayed");
-                message = "Successful";
-                return this.Ok(new { message, res });
-            }
-            else
-            {
-                message = "Vacant slot can't by by displayed";
+                if (!res.Equals(null))
+                {
+                    Log.Information("Vacant slot is displayed");
+                    message = "Successful";
+                    return this.Ok(new { message, res });
+                }
+                message = "Something went error.";
                 return BadRequest(new { message });
+            }
+            catch(CustomException)
+            {
+                return BadRequest(CustomException.ExceptionType.INVALID_INPUT);
             }
         }
 
@@ -51,16 +55,20 @@ namespace ParkingLot.Controllers
         {
             var res = this.Manager.SlotIsEmptyOrNot();
             string message;
-            if (!res.Equals(null))
+            try
             {
-                Log.Information("Vacant slot is displayed");
-                message = "Successful";
-                return this.Ok(new { message, res });
-            }
-            else
-            {
+                if (!res.Equals(null))
+                {
+                    Log.Information("Vacant slot is displayed");
+                    message = "Successful";
+                    return this.Ok(new { message, res });
+                }
                 message = "Something went error.";
                 return BadRequest(new { message });
+            }
+            catch (CustomException)
+            {
+                return BadRequest(CustomException.ExceptionType.INVALID_INPUT);
             }
         }
     }

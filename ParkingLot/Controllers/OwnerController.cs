@@ -30,20 +30,24 @@ namespace ParkingLot.Controllers
         /// <param name="parking"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Parkinglot")]
         public IActionResult ParkinglotDetails(Parking parking)
         {
             string message;
             var res = this.Manager.ParkinglotDetails(parking);
-            if (!res.Equals(null))
-            { 
-                message = "Successful";
-                return this.Ok(new { message, res });
-            }
-            else
+            try
             {
-                message = "Details adding can't be possible";
-                return BadRequest(new {  message });
+                if (!res.Equals(null))
+                {
+                    message = "Successful";
+                    msmq.SendMessage("Vehcile number " + parking.VehicleNumber + " Parking is done.", res);
+                    return this.Ok(new { message, res });
+                }
+                message= "Details adding can't be possible"; 
+                return BadRequest(new { message });
+            }
+            catch(CustomException)
+            {
+                return BadRequest(CustomException.ExceptionType.INVALID_INPUT);
             }
         }
 
@@ -52,21 +56,24 @@ namespace ParkingLot.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetDetail")]
         public IActionResult GetParkingDetail()
         {
             var res = this.Manager.GetParkingDetail();
             string message;
-            if (!res.Equals(null))
+            try
             {
-                Log.Information("list is displayed");
-                message = "Successful";
-                return this.Ok(new { message, res });
-            }
-            else
-            {
+                if (!res.Equals(null))
+                {
+                    Log.Information("list is displayed");
+                    message = "Successful";
+                    return this.Ok(new { message, res });
+                }
                 message = "List displaying can't be possible";
                 return BadRequest(new { message });
+            }
+            catch(CustomException)
+            {
+                return BadRequest(CustomException.ExceptionType.INVALID_INPUT);
             }
         }
 
@@ -82,21 +89,22 @@ namespace ParkingLot.Controllers
             string message;
             bool success;
             var res = this.Manager.GetParkingDetailsByParkingId(parkingId);
-           // object result;
-            if (!res.Equals(null))
+            try
             {
-                Log.Information("list is displayed");
-                success = true;
-                message = "Successful";
-                return this.Ok(new { success, message, res });
-            }
-            else
-            {
-                success = false;
+                if (!res.Equals(null))
+                {
+                    Log.Information("list is displayed");
+                    success = true;
+                    message = "Successful";
+                    return this.Ok(new { success, message, res });
+                }
                 message = "Errors occured in getting deatils.";
-                return BadRequest(new { success, message });
+                return BadRequest(new { message });
             }
-           // return (IActionResult)result;
+            catch(CustomException)
+            {
+                return BadRequest(CustomException.ExceptionType.INVALID_INPUT);
+            }
         }
 
         /// <summary>
@@ -105,27 +113,25 @@ namespace ParkingLot.Controllers
         /// <param name="parkingID"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("UnParking")]
         public IActionResult UnParking(int parkingID)
         {
             string message;
-            bool success;
-            var res = this.Manager.UnParking(parkingID);
-            object result;
-            if(!res.Equals(null))
+            var parkingCharge = this.Manager.UnParking(parkingID);
+            try
             {
-                success = true;
-                message = "Successful";
-                msmq.SendMessage("UnParking vehicle charges:", res);
-                result = Ok(new { success, message, res });
-            }
-            else
-            {
-                success = false;
+                if (!parkingCharge.Equals(null))
+                {
+                    message = "Successful";
+                    msmq.SendMessage("Parking Id " + parkingID + " UnParking vehicle charges=", parkingCharge);
+                    return this.Ok(new { message, parkingCharge });
+                }   
                 message = "Vehciles can't be parked getting some errors.";
-                return BadRequest(new { success, message });
+                return BadRequest(new { message });
             }
-            return (IActionResult)result;
+            catch(CustomException)
+            {
+                return BadRequest(CustomException.ExceptionType.INVALID_INPUT);
+            }
         }
     }
 }

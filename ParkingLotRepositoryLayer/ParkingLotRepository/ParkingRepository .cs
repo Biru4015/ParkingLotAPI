@@ -73,7 +73,6 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                 cmd.ExecuteNonQuery();
                 _db.Close();
             }
-
             List<Parking> list = new List<Parking>();
             Parking parking = new Parking();
             var commandTexts = Queries.selectByParkingIDQuery + parkingID + "";
@@ -101,7 +100,6 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                 }
                 _db.Close();
             }
-
             Roles roles = new Roles();
             System.TimeSpan diff = parking.ExitTime.Subtract(parking.EntryTime);
             var differenceInTime = diff.TotalHours;
@@ -170,10 +168,11 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
         /// </summary>
         /// <param name="parkingId"></param>
         /// <returns></returns>
-        public IEnumerable<Parking> GetParkingDetailsByColor(String color)
+        public IList<Parking> GetParkingDetailsByColor(string color)
         {
             List<Parking> list = new List<Parking>();
-            var commandText = Queries.selectByColorQuery  + color + "";
+            color = color.Replace('"', ' ').Trim();
+            var commandText = Queries.selectByColorQuery  + "'" +color + "'";
             using (var _db = new OracleConnection(configuration["UserConnectionStrings:UserDbConnection"]))
             using (OracleCommand cmd = new OracleCommand(commandText, _db))
             {
@@ -183,19 +182,19 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
                 OracleDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Parking parking = new Parking();
-                    parking.Id = Convert.ToInt32(reader["Id"]);
-                    parking.ParkingSLot = Convert.ToInt32(reader["ParkingSLot"]);
-                    parking.Color = reader["Color"].ToString();
-                    parking.VehicleNumber = reader["VehicleNumber"].ToString();
-                    parking.EntryTime = Convert.ToDateTime(reader["EntryTime"]);
-                    parking.VehicleId = Convert.ToInt32(reader["PVehicleId"]);
-                    parking.ParkingId = Convert.ToInt32(reader["PParkingId"]);
-                    parking.RoleId = Convert.ToInt32(reader["PRoleId"]);
-                    parking.Disabled = reader["Disabled"].ToString();
-                    parking.ExitTime = Convert.ToDateTime(reader["ExitTime"]);
-                    list.Add(parking);
-                }
+                        Parking parking = new Parking();
+                        parking.Id = Convert.ToInt32(reader["Id"]);
+                        parking.ParkingSLot = Convert.ToInt32(reader["ParkingSLot"]);
+                        parking.Color = reader["Color"].ToString();
+                        parking.VehicleNumber = reader["VehicleNumber"].ToString();
+                        parking.EntryTime = Convert.ToDateTime(reader["EntryTime"]);
+                        parking.VehicleId = Convert.ToInt32(reader["VehicleId"]);
+                        parking.ParkingId = Convert.ToInt32(reader["ParkingId"]);
+                        parking.RoleId = Convert.ToInt32(reader["RoleId"]);
+                        parking.Disabled = reader["Disabled"].ToString();
+                        parking.ExitTime = Convert.ToDateTime(reader["ExitTime"]);
+                        list.Add(parking);
+                }         
                 _db.Close();
                 return list;
             }
@@ -242,10 +241,11 @@ namespace ParkingLotRepositoryLayer.ParkingLotRepository
         /// </summary>
         /// <param name="Vehiclenum"></param>
         /// <returns></returns>
-        public IEnumerable<Parking> GetParkingDetailsByNum(String Vehiclenum)
+        public IEnumerable<Parking> GetParkingDetailsByNum(string Vehiclenum)
         {
             List<Parking> list = new List<Parking>();
-            var commandText =Queries.selectByVehcileNumberQuery  + Vehiclenum + "";
+            Vehiclenum = Vehiclenum.Replace('"', ' ').Trim();
+            var commandText =Queries.selectByVehcileNumberQuery +"'"+ Vehiclenum +"'";
             using (var _db = new OracleConnection(configuration["UserConnectionStrings:UserDbConnection"]))
             using (OracleCommand cmd = new OracleCommand(commandText, _db))
             {

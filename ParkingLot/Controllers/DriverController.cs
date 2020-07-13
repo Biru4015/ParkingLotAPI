@@ -30,21 +30,24 @@ namespace ParkingLot.Controllers
         /// <param name="parking"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Parkinglot")]
         public IActionResult ParkinglotDetails(Parking parking)
         {
             string message;
             var res = this.Manager.ParkinglotDetails(parking);
-            if (!res.Equals(null))
+            try
             {
-                message = "Successful";
-                msmq.SendMessage("UnParking vehicle charges:", res);
-                return this.Ok(new { message, res });
-            }
-            else
-            {
+                if (!res.Equals(null))
+                {
+                    message = "Successful";
+                    msmq.SendMessage("Vehcile number "+parking.VehicleNumber+" Parking is done.", res);
+                    return this.Ok(new { message, res });
+                }
                 message = "Can't add vehcile details something went wrong.";
-                return BadRequest(new {  message });
+                return this.BadRequest(new {message });
+            }
+            catch(CustomException)
+            {
+                return BadRequest(CustomException.ExceptionType.INVALID_INPUT);
             }
         }
 
@@ -54,21 +57,26 @@ namespace ParkingLot.Controllers
         /// <param name="parkingID"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("UnParking")]
         public IActionResult UnParking(int parkingID)
         {
             string message;
-            var res = this.Manager.UnParking(parkingID);
-            if (!res.Equals(null))
-            {
-                message = "Successful";
-                return this.Ok(new { message, res });
-            }
-            else
-            {
-                message = "Vehciles can't be parked getting some errors.";
-                return BadRequest(new {  message });
-            }
+            var parkingCharge = this.Manager.UnParking(parkingID);
+           try
+           {
+                if (!parkingCharge.Equals(null))
+                {
+                    msmq.SendMessage("Parking Id "+parkingID+" UnParking vehicle charges=", parkingCharge);
+                    message = "Successful";
+                    return this.Ok(new { message, parkingCharge });
+                }
+                message = "Please check again something went wrong";
+                return this.BadRequest(new { message});
+
+           }
+           catch(CustomException)
+           {
+               return BadRequest(CustomException.ExceptionType.INVALID_INPUT);
+           }
         }
     }
 }

@@ -13,11 +13,11 @@ namespace ParkingLotRepositoryLayer.IParkingLotRepository
         
         IEnumerable<Parking> GetParkingDetail();
 
-        IEnumerable<Parking> GetParkingDetailsByColor(String color);
+        IList<Parking> GetParkingDetailsByColor(string color);
 
         IEnumerable<Parking> GetParkingDetailsByParkingId(int parkingId);
         
-        IEnumerable<Parking> GetParkingDetailsByNum(String VehicleNumber);
+        IEnumerable<Parking> GetParkingDetailsByNum(string VehicleNumber);
         
         IEnumerable<Parking> GetParkingDetailsByVehicleType(int VehicleType);
         

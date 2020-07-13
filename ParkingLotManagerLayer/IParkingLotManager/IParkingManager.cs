@@ -8,9 +8,9 @@ namespace ParkingLotManagerLayer.IParkingLotManager
     public interface IParkingManager
     {
         object GetParkingDetail();
-        object GetParkingDetailsByColor(String color);
+        object GetParkingDetailsByColor(string color);
         object GetParkingDetailsByParkingId(int parkingId);
-        object GetParkingDetailsByNum(String Vehiclenum);
+        object GetParkingDetailsByNum(string Vehiclenum);
         object GetParkingDetailsByVehicleType(int VehicleType);
         object ParkinglotDetails(Parking parking);
         object UnParking(int parkingID);
